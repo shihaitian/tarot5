@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FAF6F0;
+  --color-cream-dark: #F0E8DC;
+  --color-gold: #C9A96E;
+  --color-gold-light: #E0CFA0;
+  --color-gold-dark: #A68B4B;
+  --color-lavender: #B8A9D4;
+  --color-lavender-light: #E8E0F4;
+  --color-rose: #D4A5A0;
+  --color-rose-light: #F0DCD8;
+  --color-ink: #3D3328;
+  --color-ink-light: #6B5D4F;
+  --color-mystic: #7B6BA0;
+
+  --font-serif: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  --font-display: 'Cormorant Garamond', 'Noto Serif SC', serif;
+
+  --animate-fadeInUp: fadeInUp 0.8s ease-out both;
+  --animate-fadeIn: fadeIn 1s ease-out both;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-cardGlow: cardGlow 2s ease-in-out infinite;
+  --animate-slideInFromBottom: slideInFromBottom 0.6s ease-out both;
+  --animate-breathe: breathe 4s ease-in-out infinite;
+}
+
+/* ── Keyframes ── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes cardGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(201, 169, 110, 0.2); }
+  50%      { box-shadow: 0 0 30px rgba(201, 169, 110, 0.4), 0 0 60px rgba(184, 169, 212, 0.2); }
+}
+
+@keyframes slideInFromBottom {
+  from { opacity: 0; transform: translateY(60px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.6; }
+  50%      { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes starFloat {
+  0%   { transform: translateY(0) rotate(0deg);       opacity: 0; }
+  10%  {                                               opacity: 1; }
+  90%  {                                               opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.8; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Background Pattern ── */
+
+.bg-pattern {
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(184, 169, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(201, 169, 110, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(212, 165, 160, 0.06) 0%, transparent 50%);
+}
+
+/* ── Text Golden Gradient ── */
+
+.text-golden {
+  background: linear-gradient(135deg, #A68B4B, #C9A96E, #E0CFA0, #C9A96E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Star Particles ── */
+
+.star-particle {
+  position: fixed;
+  pointer-events: none;
+  color: var(--color-gold);
+  animation: starFloat linear forwards;
+  z-index: 0;
+}
+
+/* ── Card Flip ── */
+
+.card-flip-container {
+  perspective: 1000px;
+}
+
+.card-flip-inner {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face-front,
+.card-face-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-face-back {
+  transform: rotateY(180deg);
+}
+
+/* ── Card Hover ── */
+
+.tarot-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tarot-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(201, 169, 110, 0.25),
+    0 0 20px rgba(184, 169, 212, 0.15);
+}
+
+/* ── Scrollbar ── */
+
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #FAF6F0; }
+::-webkit-scrollbar-thumb { background: #E0CFA0; border-radius: 3px; }
+
+/* ── Selection Marker ── */
+
+.card-selected {
+  animation: cardGlow 2s ease-in-out infinite;
+}
+
+/* ── Page Transition ── */
+
+.page-transition {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* ── Typing Cursor ── */
+
+.typing-cursor::after {
+  content: '▍';
+  animation: pulseGlow 1s ease-in-out infinite;
+  color: var(--color-gold);
+}
+
+/* ── Custom Button Style ── */
+
+.btn-golden {
+  background: linear-gradient(135deg, #C9A96E, #E0CFA0, #C9A96E);
+  background-size: 200% 200%;
+  transition: all 0.4s ease;
+}
+
+.btn-golden:hover {
+  background-position: right center;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ── Reading Text ── */
+
+.reading-text {
+  line-height: 2;
+  letter-spacing: 0.02em;
+}
+
+/* ── Textarea ── */
+
+textarea:focus {
+  outline: none;
+}
